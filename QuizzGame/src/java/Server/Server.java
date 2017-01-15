@@ -5,9 +5,9 @@
  */
 package Server;
 
+import Utils.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 /**
@@ -15,39 +15,43 @@ import javax.ejb.Singleton;
  * @author Andre Pinho
  */
 @Singleton
-@LocalBean
-public class Server {
-    List<String> utilizadores;
+public class Server implements ServerInterface{
+    List<Utilizador> utilizadores;
 
     public Server() {
         utilizadores = new ArrayList<>();
     }
     
-    public String getUser(String nome){
-        for(String u : utilizadores){
+   @Override
+    public Utilizador getUser(String nome){
+        for(Utilizador u : utilizadores){
             if(u.equals(nome))
                 return u;
         }
         return null;
     }
     
+   @Override
     public void addUser(String nome){
-        utilizadores.add(nome);
+        utilizadores.add(new Utilizador(nome));
     }
     
+   @Override
     public void clearList(){
         utilizadores.clear();
     }
     
+   @Override
     public void removeUser(String nome){
-        utilizadores.stream().filter((u) -> (u.equals(nome))).forEach((u) -> {
+        utilizadores.stream().filter((u) -> (u.getUsername().equals(nome))).forEach((u) -> {
             utilizadores.remove(u);
         });
     }
     
+   @Override
     public boolean aprovUserName(String nome){
-       for(String s : utilizadores){
-           if(s.equals(nome))
+       for(Utilizador s : utilizadores){
+           if(s.getUsername().equals(nome))
                return false;
        }
        return true;
