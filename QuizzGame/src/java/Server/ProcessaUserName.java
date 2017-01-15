@@ -35,6 +35,7 @@ public class ProcessaUserName extends HttpServlet {
             throws ServletException, IOException {
         String utilizador = request.getParameter("nomeDeutilizador");
         response.setContentType("text/html;charset=UTF-8");
+        System.out.println("Ola mundo");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
