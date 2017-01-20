@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author jonat
  */
 public class Utilizador {
+
     static int i = 1;
     String Username;
     int pontos;
@@ -22,8 +23,6 @@ public class Utilizador {
         pontos = 0;
         ID = i++;
     }
-    
-    
 
     public String getUsername() {
         return Username;
@@ -44,7 +43,7 @@ public class Utilizador {
 
     @Override
     public int hashCode() {
-       
+
         return ID;
     }
 
@@ -63,9 +62,8 @@ public class Utilizador {
         if (!Objects.equals(this.Username, other.Username)) {
             return false;
         }
-        
+
         return true;
     }
-    
-    
+
 }

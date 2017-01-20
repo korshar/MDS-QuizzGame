@@ -22,9 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminController extends HttpServlet {
 
     String perguntaAtiva;
-    public AdminController(){
+
+    public AdminController() {
         super();
-        perguntaAtiva="";
+        perguntaAtiva = "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -41,10 +42,11 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/AdminView.jsp").forward(request, response);
         String s = request.getParameter("RadioButtonList");
-        if(s.equals("1"))
-           perguntaAtiva="1";
+        if (s.equals("1")) {
+            perguntaAtiva = "1";
+        }
         this.doPost(request, response);
-        
+
     }
 
     /**
@@ -58,7 +60,7 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
     /**

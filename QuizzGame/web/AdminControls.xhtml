@@ -10,15 +10,17 @@
         <h1>Admin Controls</h1>
         <h4>Current Question: </h4>
         <h:form>
-            <h:selectOneRadio value="Alterar Isto">
-                   <f:selectItem itemValue="1" itemLabel="Item 1" />
-                   <f:selectItem itemValue="2" itemLabel="Item 2" />
-                   <f:selectItem itemValue="3" itemLabel="Item 1" />
-                   <f:selectItem itemValue="4" itemLabel="Item 2" />
-                   <f:selectItem itemValue="5" itemLabel="Item 2" />	
+            <!-- Por no value o sitio onde se vai guardar a pergunta seleccionada.(iniciar a variavel com um value ex:"1")
+             <h:selectOneRadio value="#{x.perguntaSeleccionada}" layout="pageDirection">
+            -->
+            <h:selectOneRadio value="1" layout="pageDirection" border="1" >
+                <f:selectItem itemValue="1" itemLabel="#{bundle.RadioQuestion1}" />
+                <f:selectItem itemValue="2" itemLabel="#{bundle.RadioQuestion2}" />
+                <f:selectItem itemValue="3" itemLabel="#{bundle.RadioQuestion3}" />
+                <f:selectItem itemValue="4" itemLabel="#{bundle.RadioQuestion4}" />
+                <f:selectItem itemValue="5" itemLabel="#{bundle.RadioQuestion5}" />	
             </h:selectOneRadio>
-
-            <h:commandButton action="Alterar Isto" value="#{bundle.SaveButton}"  />      
+            <h:commandButton action="Alterar Isto" value="#{bundle.SaveButton}"  />
         </h:form>
 
     </h:body>
