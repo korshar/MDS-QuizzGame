@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jonat
  */
-
 public class ProcessaUserName extends HttpServlet {
+
     @EJB
     private ServerInterface server;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,42 +33,41 @@ public class ProcessaUserName extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String utilizador = request.getParameter("nomeDeutilizador");
-       
+
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-    
-   
+
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Aguarde pelo início do jogo</title>");            
+            out.println("<title>Aguarde pelo início do jogo</title>");
             out.println("</head>");
             out.println("<body>");
-            if(utilizador.equals("admin"))
+            if (utilizador.equals("admin")) {
                 response.sendRedirect("AdminView.jsp");
-            
-            if(server.aprovUserName(utilizador)){
+            }
+
+            if (server.aprovUserName(utilizador)) {
                 out.println("<h1>Utilizador aprovador: " + utilizador + "</h1>");
                 server.addUser(utilizador);
+            } else {
+                out.println("<h1>Utilizador Negado: " + utilizador + "</h1>");
+                out.println("");
+                out.print("<form action=\"");
+                out.print(response.encodeURL("index.xhtml"));
+                out.print("\" ");
+                out.println("method=POST>");
+                out.println("<input type=hidden name=\"toBuy\" value=\"index.xhtm\">");
+                out.println("<br>");
+                out.println("<input type=submit value=\"Voltar à página anterior\">");
+                out.println("</form>");
+                //  response.sendRedirect("index.xhtml");
             }
-            else{
-               out.println("<h1>Utilizador Negado: " + utilizador + "</h1>");
-               out.println("");
-               out.print("<form action=\"");
-               out.print(response.encodeURL("index.xhtml"));
-               out.print("\" ");
-               out.println("method=POST>");
-               out.println("<input type=hidden name=\"toBuy\" value=\"index.xhtm\">");
-               out.println("<br>");
-               out.println("<input type=submit value=\"Voltar à página anterior\">");
-               out.println("</form>");
-             //  response.sendRedirect("index.xhtml");
-            }
-           
+
             out.println("</body>");
             out.println("</html>");
         }

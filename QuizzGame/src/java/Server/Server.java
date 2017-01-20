@@ -15,13 +15,15 @@ import javax.ejb.Singleton;
  * @author Andre Pinho
  */
 @Singleton
-public class Server implements ServerInterface{
+public class Server implements ServerInterface {
+
     static List<Utilizador> utilizadores;
     boolean pergunta1;
     boolean pergunta2;
     boolean pergunta3;
     boolean pergunta4;
     boolean pergunta5;
+
     public Server() {
         utilizadores = new ArrayList<>();
         pergunta1 = false;
@@ -30,50 +32,52 @@ public class Server implements ServerInterface{
         pergunta4 = false;
         pergunta5 = false;
     }
-    
-    
-    
-   @Override
-    public Utilizador getUser(String nome){
-        for(Utilizador u : utilizadores){
-            if(u.getUsername().equals(nome)) {
+
+    @Override
+    public Utilizador getUser(String nome) {
+        for (Utilizador u : utilizadores) {
+            if (u.getUsername().equals(nome)) {
                 return u;
             } else {
             }
         }
         return null;
     }
-    
-   @Override
-    public void addUser(String nome){
+
+    @Override
+    public void addUser(String nome) {
         utilizadores.add(new Utilizador(nome));
     }
-    
-   @Override
-    public void clearList(){
+
+    @Override
+    public void clearList() {
         utilizadores.clear();
     }
-    
-   @Override
-    public void removeUser(String nome){
+
+    @Override
+    public void removeUser(String nome) {
         utilizadores.stream().filter((u) -> (u.getUsername().equals(nome))).forEach((u) -> {
             utilizadores.remove(u);
         });
     }
-    
-   @Override
-    public boolean aprovUserName(String nome){
-       for(Utilizador s : utilizadores){
-           if(s.getUsername().equalsIgnoreCase(nome))
-               return false;
-       }
-        if(nome.equals(""))
+
+    @Override
+    public boolean aprovUserName(String nome) {
+        for (Utilizador s : utilizadores) {
+            if (s.getUsername().equalsIgnoreCase(nome)) {
+                return false;
+            }
+        }
+        if (nome.equals("")) {
             return false;
-        if(nome == null)
+        }
+        if (nome == null) {
             return false;
-        if(nome.isEmpty())
+        }
+        if (nome.isEmpty()) {
             return false;
-       return true;
+        }
+        return true;
     }
 
     @Override
@@ -128,8 +132,7 @@ public class Server implements ServerInterface{
 
     @Override
     public List<Utilizador> getLista() {
-       return Server.utilizadores;
+        return Server.utilizadores;
     }
-    
-    
+
 }

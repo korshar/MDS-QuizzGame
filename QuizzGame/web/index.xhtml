@@ -7,14 +7,14 @@
         <title>Registo de Utilizador</title>
     </h:head>
     <h:body>
-         <h:form>
-              <h1>Introduza o seu nome de utilizador:</h1>
-              <h:inputText  binding="#{input1}" ></h:inputText>
-              <h:commandButton id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" > 
-              </h:commandButton>
-              <h:inputText id="status" value="#{navigationController.username}"></h:inputText>
-              </h:form>
+        <h:form>
+            <h1>Introduza o seu nome de utilizador:</h1>
+            <h:inputText  binding="#{input1}" ></h:inputText>
+            <h:commandButton id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" > 
+            </h:commandButton>
+            <h:inputText id="status" value="#{navigationController.username}"></h:inputText>
+        </h:form>
     </h:body>
-    
+
 </html> 
 

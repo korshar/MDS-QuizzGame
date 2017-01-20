@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Final Scores</title>
+    </h:head>
+    <h:body>
+        <h1>Game Over</h1>
+        <h:form>
+            <!-- Vamos Usar Algo do genero
+            <ul>
+                <ui:repeat value="#{myBean.score}" var="score">
+                    <li><h:outputText value="#{score.name}"/></li>
+                </ui:repeat>
+            </ul>
+            -->
+            <ol>
+                <li>Andre Rodrigues - 5</li>
+                <li>Andre Pinho - 4</li>
+                <li>Fabio Minas - 3</li>
+                <li>Goncalo Lopes - 2</li>
+                <li>Jonathan Magalhaes - 1</li>
+            </ol>
+
+            <h:dataTable value="Alterar isto" border="1">   
+                <h:column>
+                    <f:facet name="header">#{bundle.FinalScoresColumn1}</f:facet>
+                    <h:outputText value="1, 2, 3, 4, 5"/>
+                    <!--Buscar a Array dos titulos de perguntas
+                    <h:outputText value="#{myBean.questions}"/>
+                    -->
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.FinalScoresColumn2}</f:facet>
+                    <h:outputText value="5, 4, 3, 2, 1"/>
+                    <!--Buscar a Array do numero de respostas corretas
+                    <h:outputText value="#{myBean.questionsCorrect}"/>
+                    -->
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.FinalScoresColumn3}</f:facet>
+                    <h:outputText value="0, 1, 2, 3, 4"/>
+                    <!--Buscar a Array do numero de respostas erradas
+                    <h:outputText value="#{myBean.questionsWrong}"/>
+                    -->
+                </h:column>
+            </h:dataTable> 
+            <h:commandButton action="Alterar Isto" value="#{bundle.ButtonPlayAgain}"  />
+        </h:form>
+    </h:body>
+</html>
+
