@@ -47,6 +47,9 @@ public class ProcessaUserName extends HttpServlet {
             out.println("<title>Aguarde pelo início do jogo</title>");            
             out.println("</head>");
             out.println("<body>");
+            if(utilizador.equals("admin"))
+                response.sendRedirect("AdminView.jsp");
+            
             if(server.aprovUserName(utilizador)){
                 out.println("<h1>Utilizador aprovador: " + utilizador + "</h1>");
                 server.addUser(utilizador);
