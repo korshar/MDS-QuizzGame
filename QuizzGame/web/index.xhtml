@@ -1,18 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registo de Utilizador</title>
     </h:head>
     <h:body>
-         <h1>Introduza o seu nome de utilizador:</h1>
-        <form name="UserName" action="ProcessaUserName">
-            <input type="text" name="nomeDeutilizador" value="" />
-          <!--  <input type="text" style="display:none"  name="erroNome" value="Nome de Utilzador inválido" readonly="readonly" disabled="disabled" /> -->
-            <input type="submit" value="submitUsername" name="ProcessaUserName" />
-        </form>
+         <h:form>
+              <h1>Introduza o seu nome de utilizador:</h1>
+              <h:inputText  binding="#{input1}" ></h:inputText>
+              <h:commandButton id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" > 
+              </h:commandButton>
+              <h:inputText id="status" value="#{navigationController.username}"></h:inputText>
+              </h:form>
     </h:body>
     
-</html>
+</html> 
 
