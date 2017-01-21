@@ -6,10 +6,11 @@
 
 
 import Server.ServerInterface;
+import Utils.Pergunta;
+import Utils.Utilizador;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -24,7 +25,16 @@ import javax.inject.Named;
 public class NavigationController implements Serializable{
     @EJB
     private ServerInterface server;
-    String userName=null;
+    Utilizador user;
+    Pergunta per;
+    String selected;
+    String Opcao1;
+    String Opcao4;
+    String Opcao2;
+    String Opcao3;
+    String Pergunta;
+    int Nperg;
+    
     private static final long serialVersionUID = 1L;
     
     public String introduzNome(){
@@ -32,24 +42,75 @@ public class NavigationController implements Serializable{
     }
     
     public String getUsername(){
-        if(userName==null){
-           return "";
+        if(user==null){
+           return "Utilizador inválido";
         }
         else
-            return userName;
+            return user.toString();
     }
     
+
     public void setUsername(String value) throws IOException {
-      
-       if(server.aprovUserName(value)){
-           userName=value+true;
+      if(value.equalsIgnoreCase("adminMDS")){
+          user = new Utilizador("adminMDS");
+          FacesContext.getCurrentInstance().getExternalContext().redirect("AdminControls.xhtml");
+      }
+      else{
+          if(server.aprovUserName(value)){
            server.addUser(value); 
-           FacesContext.getCurrentInstance().getExternalContext().redirect("ProcessaUserName.xhtml");
+           user=server.getUser(value);
+           this.Nperg = 0;
+           per=server.getNextPergunta();
+           FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
             
         }
        else{
-           userName=null;
+           user=null;
+        }
+      }
+     
     }
+    
+    public String getPergunta(){
+        
+        return this.Pergunta = per.getPergunta();
+    }
+    
+     public String getOpcao1(){
+        
+        return Opcao1 = per.getOpcao1();
+        
+    }
+     
+    public String getOpcao2(){
+       
+        return Opcao2 = per.getOpcao2();
+        
+    }
+    
+    public String getOpcao3(){
+       
+        return Opcao3 = per.getOpcao3();
+        
+    }
+    
+    public String getOpcao4(){
+       
+        return Opcao4 = per.getOpcao4();
+        
+    }
+    
+    public String getSelected(){
+        return selected;
+    }
+    
+    public void setSelected(String s){
+        this.selected = s;
+    }
+    
+    public void selecionaPergunta(){
+       per = server.getPergunta(Nperg++);
+       
     }
    
 

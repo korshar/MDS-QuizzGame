@@ -5,6 +5,7 @@
  */
 package Server;
 
+import Utils.Pergunta;
 import Utils.Utilizador;
 import java.util.List;
 import javax.ejb.Local;
@@ -26,25 +27,15 @@ public interface ServerInterface {
 
     public boolean aprovUserName(String nome);
 
-    public void setPergunta1(boolean pergunta1);
-
-    public boolean isPergunta5();
-
-    public boolean isPergunta1();
-
-    public boolean isPergunta2();
-
-    public boolean isPergunta3();
-
-    public boolean isPergunta4();
-
-    public void setPergunta3(boolean pergunta3);
-
-    public void setPergunta2(boolean pergunta2);
-
-    public void setPergunta4(boolean pergunta4);
-
-    public void setPergunta5(boolean pergunta5);
-
     public List<Utilizador> getLista();
+    
+    public void setEstadoJogo(boolean estado);
+    
+    public boolean getEstadoJogo();
+    
+    public Pergunta getNextPergunta();
+    public Pergunta getPergunta(int id);
+    
+    
+    
 }

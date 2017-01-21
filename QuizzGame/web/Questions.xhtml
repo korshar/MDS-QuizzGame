@@ -8,17 +8,19 @@
     </h:head>
     <h:body>
         <h1>Pergunta 1</h1>
-        <h2>Qual a primeira letra do abc?</h2>
+        <h2><h:outputFormat id="Pergunta" value="#{navigationController.pergunta}"/></h2>
         <h:form>
             <!-- Por no value o sitio onde se vai guardar a resposta.(iniciar a variavel com um value ex:"1")
              <h:selectOneRadio value="#{x.respostaSeleccionada}" layout="pageDirection">
             -->
-            <h:selectOneRadio value="1" layout="pageDirection">
-                <f:selectItem itemValue="1" itemLabel="A" />
-                <f:selectItem itemValue="2" itemLabel="B" />
-                <f:selectItem itemValue="3" itemLabel="C" />
-                <f:selectItem itemValue="4" itemLabel="D" />	
+            <h:selectOneRadio value="#{navigationController.selected}" layout="pageDirection">
+                <f:selectItem itemValue="1" itemLabel="#{navigationController.opcao1}" />
+                <f:selectItem itemValue="2" itemLabel="#{navigationController.opcao2}" />
+                <f:selectItem itemValue="3" itemLabel="#{navigationController.opcao3}" />
+                <f:selectItem itemValue="4" itemLabel="#{navigationController.opcao4}" />	
             </h:selectOneRadio>
+            <h:commandButton action="#{navigationController.selecionaPergunta()}"/>
+            <h:outputFormat value="#{navigationController.selected}"/>
         </h:form>
     </h:body>
 </html>
