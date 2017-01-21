@@ -9,11 +9,12 @@
     <h:body>
         <h1>Admin Controls</h1>
         <h4>Current Question: </h4>
-        <h:form>
+        <h:form >
             <!-- Por no value o sitio onde se vai guardar a pergunta seleccionada.(iniciar a variavel com um value ex:"1")
              <h:selectOneRadio value="#{x.perguntaSeleccionada}" layout="pageDirection">
             -->
-            <h:selectOneRadio value="1" layout="pageDirection" border="1" >
+            <h:commandButton action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"></h:commandButton>
+            <h:selectOneRadio  value="1" layout="pageDirection" border="1" >
                 <f:selectItem itemValue="1" itemLabel="#{bundle.RadioQuestion1}" />
                 <f:selectItem itemValue="2" itemLabel="#{bundle.RadioQuestion2}" />
                 <f:selectItem itemValue="3" itemLabel="#{bundle.RadioQuestion3}" />

@@ -10,9 +10,9 @@
         <h:form>
             <h1>Introduza o seu nome de utilizador:</h1>
             <h:inputText  binding="#{input1}" ></h:inputText>
-            <h:commandButton id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" > 
+            <h:commandButton rendererType="all" id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" >
             </h:commandButton>
-            <h:inputText id="status" value="#{navigationController.username}"></h:inputText>
+            <h:outputFormat value="#{navigationController.username}"></h:outputFormat>
         </h:form>
     </h:body>
 
