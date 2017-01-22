@@ -11,11 +11,22 @@
         <h1>Game Over</h1>
         <h:form>
 
-            <ui:repeat value="#{navigationController.users}" var="user">
-                <h:outputText value="#{user.score.topUser}" />
-                <h:outputText value="&lt;br/&gt;" escape="false" />
-            </ui:repeat>
+            <h:dataTable value="#{navigationController.users}" var="user" border="1">   
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn1}</f:facet>
+                    <h:outputText value="#{user.score.classification}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn2}</f:facet>
+                    <h:outputText value="#{user.score.username}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn3}</f:facet>
+                    <h:outputText value="#{user.score.points}" />
+                </h:column>
+            </h:dataTable> 
 
+            <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:outputText value="&lt;br/&gt;" escape="false" />
 
             <h:dataTable value="#{navigationController.users}" var="user" border="1">   

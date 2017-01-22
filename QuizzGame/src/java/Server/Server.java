@@ -47,7 +47,7 @@ public class Server implements ServerInterface {
         utilizadores.add(new Utilizador("Fábio Minas"));
         utilizadores.get(utilizadores.size() - 1).getScore().setPoints("4");
 
-        updateScore();
+        updateScoreBoard();
     }
 
     @Override
@@ -132,27 +132,13 @@ public class Server implements ServerInterface {
         Server.utilizadores = utilizadores;
     }
 
-    public void updateScore() {
-        Collections.sort(utilizadores, new Comparator<Utilizador>() {
-            @Override
-            public int compare(Utilizador p1, Utilizador p2) {
-                return p2.getScore().getPoints().compareTo(p1.getScore().getPoints());
-            }
-
-        });
-        for (int i = 0; i < utilizadores.size(); i++) {
-            utilizadores.get(i).getScore().setTopUser(i + 1 + " - " + utilizadores.get(i).getScore().getUsername() + " - " + utilizadores.get(i).getScore().getPoints());
-            utilizadores.get(i).getScore().setClassification(Integer.toString(i + 1));
-        }
-    }
-    
     @Override
     @Schedule(second = "5", minute = "*", hour = "*")
     public void updateScoreBoard() {
         Collections.sort(utilizadores, new Comparator<Utilizador>() {
             @Override
             public int compare(Utilizador p1, Utilizador p2) {
-                return p1.getScore().getPoints().compareTo(p2.getScore().getPoints());
+                return p2.getScore().getPoints().compareTo(p1.getScore().getPoints());
             }
 
         });
