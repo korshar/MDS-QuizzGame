@@ -19,20 +19,5 @@
             <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
         </h:form>
     </h:body>
-
-    <!--
-<h:head>
-    <title>Registo de Utilizador</title>
-</h:head>
-<h:body>
-    <h:form>
-        <h1>Introduza o seu nome de utilizador:</h1>
-        <h:inputText  binding="#{input1}" ></h:inputText>
-        <h:commandButton rendererType="all" id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" >
-        </h:commandButton>
-        <h:outputFormat value="#{navigationController.username}"></h:outputFormat>
-    </h:form>
-</h:body>
-    -->
 </html> 
 
