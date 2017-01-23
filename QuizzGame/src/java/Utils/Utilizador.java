@@ -36,7 +36,6 @@ public class Utilizador {
         this.score = score;
     }
     
-    
 
     @Override
     public String toString() {

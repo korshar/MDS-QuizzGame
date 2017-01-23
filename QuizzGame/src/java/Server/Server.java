@@ -6,12 +6,13 @@
 package Server;
 
 import Utils.Pergunta;
-import Utils.Score;
 import Utils.Utilizador;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 
@@ -20,13 +21,16 @@ import javax.ejb.Singleton;
  * @author Andre Pinho
  */
 @Singleton
+@LocalBean
 public class Server implements ServerInterface {
 
     static List<Utilizador> utilizadores;
     static List<Pergunta> perguntas;
     boolean jogo;
-
-    public Server() {
+    
+    
+    @PostConstruct
+    public void load() {
         utilizadores = new ArrayList<>();
         perguntas = new ArrayList<>();
         perguntas.add(new Pergunta("Qual é o maior clube de futebol do mundo?", 1, "Benfica", "Real Madrid", "AC Milan", "Benfica", "Barcelona"));
@@ -48,6 +52,10 @@ public class Server implements ServerInterface {
         utilizadores.get(utilizadores.size() - 1).getScore().setPoints("4");
 
         updateScoreBoard();
+    }
+
+    public Server() {
+
     }
 
     @Override
@@ -133,7 +141,16 @@ public class Server implements ServerInterface {
     }
 
     @Override
-    @Schedule(second = "5", minute = "*", hour = "*")
+    public List<Pergunta> getPerguntas() {
+        return perguntas;
+    }
+
+    @Override
+    public void setPerguntas(List<Pergunta> perguntas) {
+        Server.perguntas = perguntas;
+    }
+
+    @Schedule(second = "*/1", minute = "*", hour = "*")
     public void updateScoreBoard() {
         Collections.sort(utilizadores, new Comparator<Utilizador>() {
             @Override

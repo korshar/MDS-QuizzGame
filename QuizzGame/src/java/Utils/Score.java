@@ -20,7 +20,6 @@ public class Score {
         points = Integer.toString(0);
         topUser = new String();
         classification = new String();
-        points = new String();
     }
 
     public String getTopUser() {

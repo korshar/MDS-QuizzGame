@@ -6,7 +6,6 @@
 package Server;
 
 import Utils.Pergunta;
-import Utils.Score;
 import Utils.Utilizador;
 import java.util.List;
 import javax.ejb.Local;
@@ -42,6 +41,8 @@ public interface ServerInterface {
 
     public void setUtilizadores(List<Utilizador> utilizadores);
     
-    public void updateScoreBoard();
+    public List<Pergunta> getPerguntas();
+
+    public void setPerguntas(List<Pergunta> perguntas);
     
 }

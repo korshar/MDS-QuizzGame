@@ -7,20 +7,19 @@
         <title>Question</title>
     </h:head>
     <h:body>
-        <h1>Pergunta 1</h1>
+        <h1>Pergunta #{navigationController.per.id}</h1>
         <h2><h:outputFormat id="Pergunta" value="#{navigationController.pergunta}"/></h2>
         <h:form>
-            <!-- Por no value o sitio onde se vai guardar a resposta.(iniciar a variavel com um value ex:"1")
-             <h:selectOneRadio value="#{x.respostaSeleccionada}" layout="pageDirection">
-            -->
             <h:selectOneRadio value="#{navigationController.selected}" layout="pageDirection">
                 <f:selectItem itemValue="1" itemLabel="#{navigationController.opcao1}" />
                 <f:selectItem itemValue="2" itemLabel="#{navigationController.opcao2}" />
                 <f:selectItem itemValue="3" itemLabel="#{navigationController.opcao3}" />
                 <f:selectItem itemValue="4" itemLabel="#{navigationController.opcao4}" />	
             </h:selectOneRadio>
-            <h:commandButton action="#{navigationController.selecionaPergunta()}"/>
-            <h:outputFormat value="#{navigationController.selected}"/>
+            
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:commandButton value="#{bundle.ButtonConfirm}" action="#{navigationController.selecionaPergunta()}"/>
         </h:form>
     </h:body>
 </html>

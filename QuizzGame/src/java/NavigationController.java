@@ -38,7 +38,7 @@ public class NavigationController implements Serializable {
     String Pergunta;
     int Nperg;
     List<Utilizador> users = new ArrayList<>();
-
+    List<Pergunta> perguntas = new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
 
@@ -111,8 +111,13 @@ public class NavigationController implements Serializable {
     }
 
     public void selecionaPergunta() {
-        per = server.getPergunta(Nperg++);
-
+        if (per.isAnswer(Integer.parseInt(selected))) {
+            server.getPergunta(per.getId()-1).incCorrectAnswers();
+            server.getUser(user.getUsername()).getScore().addPoints(1);
+        } else {
+            server.getPergunta(per.getId()-1).incWrongAnswers();
+        }
+        per = server.getPergunta(++Nperg);
     }
 
     public List<Utilizador> getUsers() {
@@ -123,5 +128,26 @@ public class NavigationController implements Serializable {
         this.users = users;
     }
 
+    public List<Pergunta> getPerguntas() {
+        return server.getPerguntas();
+    }
 
+    public void setPerguntas(List<Pergunta> perguntas) {
+        this.perguntas = perguntas;
+    }
+
+    public Pergunta getPer() {
+        return per;
+    }
+
+    public void setPer(Pergunta per) {
+        this.per = per;
+    }
+
+    public Boolean isUsernameValid(String username){
+    
+        return username.equalsIgnoreCase("adminMDS") || server.aprovUserName(username);
+    }
+    
+    
 }

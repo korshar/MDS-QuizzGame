@@ -14,6 +14,9 @@
              <h:selectOneRadio value="#{x.perguntaSeleccionada}" layout="pageDirection">
             -->
             <h:commandButton action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"></h:commandButton>
+            
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
             <h:selectOneRadio  value="1" layout="pageDirection" border="1" >
                 <f:selectItem itemValue="1" itemLabel="#{bundle.RadioQuestion1}" />
                 <f:selectItem itemValue="2" itemLabel="#{bundle.RadioQuestion2}" />
@@ -21,7 +24,10 @@
                 <f:selectItem itemValue="4" itemLabel="#{bundle.RadioQuestion4}" />
                 <f:selectItem itemValue="5" itemLabel="#{bundle.RadioQuestion5}" />	
             </h:selectOneRadio>
-            <h:commandButton action="Alterar Isto" value="#{bundle.SaveButton}"  />
+            
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:commandButton action="Alterar Isto" value="#{bundle.ButtonSave}"  />
         </h:form>
 
     </h:body>
