@@ -5,8 +5,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Admin Controls</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
     </h:head>
     <h:body>
+        <div class="container-fluid">
         <h1>Admin Controls</h1>
         <h4>Current Question: </h4>
         <h:form >
@@ -30,7 +36,7 @@
             
             <h:commandButton action="#{adminController.ativaPergunta()}" value="#{bundle.ButtonSave}"  />
         </h:form>
-
+        </div>
     </h:body>
 </html>
 
