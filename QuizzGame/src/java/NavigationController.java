@@ -178,7 +178,7 @@ public class NavigationController implements Serializable {
     }
 
     public void refreshStartGame() throws IOException {
-        if (server.getEstadoJogo() == true) {
+        if (server.getEstadoJogo() == false) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
         }
 
