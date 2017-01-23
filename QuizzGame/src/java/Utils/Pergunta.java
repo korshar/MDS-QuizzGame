@@ -129,6 +129,14 @@ public class Pergunta {
                 return false;
         }
     }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
     
     
 }

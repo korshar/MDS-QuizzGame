@@ -158,6 +158,7 @@ public class NavigationController implements Serializable {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
     }
+    
     public void refreshBetween() throws IOException {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
