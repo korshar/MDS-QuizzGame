@@ -6,8 +6,14 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Extreme Scrum</title>
+        <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
     </h:head>
     <h:body>
+        <div class="container-fluid">
         <h1>Extreme Scrum Quiz</h1>
         <h:form>
             <h:graphicImage value="resources/download.jpeg" width="238" height="212" alt="download"/>
@@ -15,9 +21,10 @@
             <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:inputText id="inputUsername" binding="#{username}"/>
             <p:watermark for="inputUsername" value="#{bundle.InputTextUsername}" />  
-            <h:commandButton rendererType="all" value="#{bundle.ButtonConfirm}" action="#{navigationController.setUsername(username.value)}"/>
+            <h:commandButton class="btn btn-primary btn-sm" rendererType="all" value="#{bundle.ButtonConfirm}" action="#{navigationController.setUsername(username.value)}"/>
             <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
         </h:form>
+        </div>
     </h:body>
 </html> 
 
