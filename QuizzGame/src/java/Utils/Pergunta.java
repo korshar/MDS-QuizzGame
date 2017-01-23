@@ -19,6 +19,7 @@ public class Pergunta {
     String opcao4;
     int countWrongAnswers;
     int countCorrectAnswers;
+    boolean blocked;
 
     public Pergunta(String s, int id, String r,String op1,String op2,String op3,String op4){
         this.pergunta = s;
@@ -30,6 +31,7 @@ public class Pergunta {
         this.opcao4=op4;
         countWrongAnswers = 0;
         countCorrectAnswers = 0;
+        blocked = true;
     }
 
     public String getPergunta() {
@@ -127,5 +129,6 @@ public class Pergunta {
                 return false;
         }
     }
+    
     
 }
