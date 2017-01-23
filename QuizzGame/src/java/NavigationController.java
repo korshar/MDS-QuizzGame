@@ -110,7 +110,7 @@ public class NavigationController implements Serializable {
         this.selected = s;
     }
 
-    public void selecionaPergunta() {
+    public void selecionaPergunta() throws IOException {
         if (per.isAnswer(Integer.parseInt(selected))) {
             server.getPergunta(per.getId()-1).incCorrectAnswers();
             server.getUser(user.getUsername()).getScore().addPoints(1);
@@ -118,6 +118,7 @@ public class NavigationController implements Serializable {
             server.getPergunta(per.getId()-1).incWrongAnswers();
         }
         per = server.getPergunta(++Nperg);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
     }
 
     public List<Utilizador> getUsers() {
@@ -149,5 +150,8 @@ public class NavigationController implements Serializable {
         return username.equalsIgnoreCase("adminMDS") || server.aprovUserName(username);
     }
     
+    public void nextquestion() throws IOException{
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
+    }
     
 }
