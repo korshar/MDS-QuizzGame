@@ -15,12 +15,12 @@ public class Utilizador {
 
     static int i = 1;
     String Username;
-    int pontos;
+    Score score;
     int ID;
 
     public Utilizador(String nome) {
         Username = nome;
-        pontos = 0;
+        score = new Score(Username);
         ID = i++;
     }
 
@@ -28,17 +28,18 @@ public class Utilizador {
         return Username;
     }
 
-    public int getPontos() {
-        return pontos;
+    public Score getScore() {
+        return score;
     }
 
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
+    public void setScore(Score score) {
+        this.score = score;
     }
+    
 
     @Override
     public String toString() {
-        return "Utilizador{" + "Username=" + Username + ", pontos=" + pontos + '}';
+        return "Utilizador{" + "Username=" + Username + ", pontos=" + score.getPoints() + '}';
     }
 
     @Override

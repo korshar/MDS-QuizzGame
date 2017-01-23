@@ -17,7 +17,9 @@ public class Pergunta {
     String opcao2;
     String opcao3;
     String opcao4;
-    
+    int countWrongAnswers;
+    int countCorrectAnswers;
+
     public Pergunta(String s, int id, String r,String op1,String op2,String op3,String op4){
         this.pergunta = s;
         this.id = id;
@@ -26,6 +28,8 @@ public class Pergunta {
         this.opcao2=op2;
         this.opcao3=op3;
         this.opcao4=op4;
+        countWrongAnswers = 0;
+        countCorrectAnswers = 0;
     }
 
     public String getPergunta() {
@@ -84,5 +88,44 @@ public class Pergunta {
         this.opcao4 = opcao4;
     }
     
+    
+    public int getCountWrongAnswers() {
+        return countWrongAnswers;
+    }
+
+    public void setCountWrongAnswers(int countWrongAnswers) {
+        this.countWrongAnswers = countWrongAnswers;
+    }
+
+    public int getCountCorrectAnswers() {
+        return countCorrectAnswers;
+    }
+
+    public void setCountCorrectAnswers(int countCorrectAnswers) {
+        this.countCorrectAnswers = countCorrectAnswers;
+    }
+    
+    public void incWrongAnswers(){
+        countWrongAnswers++;
+    }
+    
+    public void incCorrectAnswers(){
+        countCorrectAnswers++;
+    }
+    
+    public boolean isAnswer(int index){
+        switch(index){
+            case 1:
+                return resposta.equals(opcao1);
+            case 2:
+                return resposta.equals(opcao2);
+            case 3:
+                return resposta.equals(opcao3);
+            case 4:
+                return resposta.equals(opcao4);
+            default:
+                return false;
+        }
+    }
     
 }

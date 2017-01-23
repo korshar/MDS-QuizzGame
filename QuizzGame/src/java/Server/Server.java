@@ -7,9 +7,13 @@ package Server;
 
 import Utils.Pergunta;
 import Utils.Utilizador;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.LocalBean;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 
 /**
@@ -17,22 +21,41 @@ import javax.ejb.Singleton;
  * @author Andre Pinho
  */
 @Singleton
+@LocalBean
 public class Server implements ServerInterface {
 
     static List<Utilizador> utilizadores;
     static List<Pergunta> perguntas;
     boolean jogo;
     
-
-    public Server() {
+    
+    @PostConstruct
+    public void load() {
         utilizadores = new ArrayList<>();
         perguntas = new ArrayList<>();
-        perguntas.add(new Pergunta("Qual é o maior clube de futebol do mundo?",1,"Benfica", "Real Madrid", "AC Milan", "Benfica", "Barcelona"));
-        perguntas.add(new Pergunta("Qual foi o melhor Jogador Fifa em 2016?",2,"CR7", "CR7", "Messi", "Griezmann", "André Baladas"));
-        perguntas.add(new Pergunta("Qual a linguagem de Programação mais usada neste momento?",3,"JAVA", "OBJECTIVE-C", "C++", "Python", "JAVA"));
-        perguntas.add(new Pergunta("Qual a capital do Tuvalu",4,"Funafuti", "Funafuti", "Alapi", "Marmelândia", "Bagan"));
-        perguntas.add(new Pergunta("De onde provém a famosa água JANA?",5,"Croacia", "Malta", "Croacia", "Suécia", "Dinamarca"));
-        jogo=false;
+        perguntas.add(new Pergunta("Qual é o maior clube de futebol do mundo?", 1, "Benfica", "Real Madrid", "AC Milan", "Benfica", "Barcelona"));
+        perguntas.add(new Pergunta("Qual foi o melhor Jogador Fifa em 2016?", 2, "CR7", "CR7", "Messi", "Griezmann", "André Baladas"));
+        perguntas.add(new Pergunta("Qual a linguagem de Programação mais usada neste momento?", 3, "JAVA", "OBJECTIVE-C", "C++", "Python", "JAVA"));
+        perguntas.add(new Pergunta("Qual a capital do Tuvalu", 4, "Funafuti", "Funafuti", "Alapi", "Marmelândia", "Bagan"));
+        perguntas.add(new Pergunta("De onde provém a famosa água JANA?", 5, "Croacia", "Malta", "Croacia", "Suécia", "Dinamarca"));
+        jogo = false;
+
+        utilizadores.add(new Utilizador("Jonathan Magalhães"));
+        utilizadores.get(utilizadores.size() - 1).getScore().setPoints("1");
+        utilizadores.add(new Utilizador("André Rodrigues"));
+        utilizadores.get(utilizadores.size() - 1).getScore().setPoints("5");
+        utilizadores.add(new Utilizador("Gonçalo Lopes"));
+        utilizadores.get(utilizadores.size() - 1).getScore().setPoints("2");
+        utilizadores.add(new Utilizador("André Pinho"));
+        utilizadores.get(utilizadores.size() - 1).getScore().setPoints("5");
+        utilizadores.add(new Utilizador("Fábio Minas"));
+        utilizadores.get(utilizadores.size() - 1).getScore().setPoints("4");
+
+        updateScoreBoard();
+    }
+
+    public Server() {
+
     }
 
     @Override
@@ -82,7 +105,6 @@ public class Server implements ServerInterface {
         return true;
     }
 
-
     @Override
     public List<Utilizador> getLista() {
         return Server.utilizadores;
@@ -90,7 +112,7 @@ public class Server implements ServerInterface {
 
     @Override
     public void setEstadoJogo(boolean estado) {
-        this.jogo=estado;
+        this.jogo = estado;
     }
 
     @Override
@@ -108,4 +130,38 @@ public class Server implements ServerInterface {
         return perguntas.get(id);
     }
 
+    @Override
+    public List<Utilizador> getUtilizadores() {
+        return utilizadores;
+    }
+
+    @Override
+    public void setUtilizadores(List<Utilizador> utilizadores) {
+        Server.utilizadores = utilizadores;
+    }
+
+    @Override
+    public List<Pergunta> getPerguntas() {
+        return perguntas;
+    }
+
+    @Override
+    public void setPerguntas(List<Pergunta> perguntas) {
+        Server.perguntas = perguntas;
+    }
+
+    @Schedule(second = "*/1", minute = "*", hour = "*")
+    public void updateScoreBoard() {
+        Collections.sort(utilizadores, new Comparator<Utilizador>() {
+            @Override
+            public int compare(Utilizador p1, Utilizador p2) {
+                return p2.getScore().getPoints().compareTo(p1.getScore().getPoints());
+            }
+
+        });
+        for (int i = 0; i < utilizadores.size(); i++) {
+            utilizadores.get(i).getScore().setTopUser(i + 1 + " - " + utilizadores.get(i).getScore().getUsername() + " - " + utilizadores.get(i).getScore().getPoints());
+            utilizadores.get(i).getScore().setClassification(Integer.toString(i + 1));
+        }
+    }
 }

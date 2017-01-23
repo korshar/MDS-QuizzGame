@@ -2,19 +2,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Registo de Utilizador</title>
+        <title>Extreme Scrum</title>
     </h:head>
     <h:body>
+        <h1>Extreme Scrum Quiz</h1>
         <h:form>
-            <h1>Introduza o seu nome de utilizador:</h1>
-            <h:inputText  binding="#{input1}" ></h:inputText>
-            <h:commandButton rendererType="all" id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" >
-            </h:commandButton>
-            <h:outputFormat value="#{navigationController.username}"></h:outputFormat>
+            <h:graphicImage value="resources/download.jpeg" width="238" height="212" alt="download"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            <h:inputText id="inputUsername" binding="#{username}"/>
+            <p:watermark for="inputUsername" value="#{bundle.InputTextUsername}" />  
+            <h:commandButton rendererType="all" value="#{bundle.ButtonConfirm}" action="#{navigationController.setUsername(username.value)}"/>
+            <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
         </h:form>
     </h:body>
 
+    <!--
+<h:head>
+    <title>Registo de Utilizador</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h1>Introduza o seu nome de utilizador:</h1>
+        <h:inputText  binding="#{input1}" ></h:inputText>
+        <h:commandButton rendererType="all" id="SubmeterNome" action="#{navigationController.setUsername(input1.value)}" >
+        </h:commandButton>
+        <h:outputFormat value="#{navigationController.username}"></h:outputFormat>
+    </h:form>
+</h:body>
+    -->
 </html> 
 

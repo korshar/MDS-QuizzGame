@@ -10,44 +10,41 @@
     <h:body>
         <h1>Game Over</h1>
         <h:form>
-            <!-- Vamos Usar Algo do genero
-            <ul>
-                <ui:repeat value="#{myBean.score}" var="score">
-                    <li><h:outputText value="#{score.name}"/></li>
-                </ui:repeat>
-            </ul>
-            -->
-            <ol>
-                <li>Andre Rodrigues - 5</li>
-                <li>Andre Pinho - 4</li>
-                <li>Fabio Minas - 3</li>
-                <li>Goncalo Lopes - 2</li>
-                <li>Jonathan Magalhaes - 1</li>
-            </ol>
 
-            <h:dataTable value="Alterar isto" border="1">   
+            <h:dataTable value="#{navigationController.users}" var="user" border="1">   
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn1}</f:facet>
+                    <h:outputText value="#{user.score.classification}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn2}</f:facet>
+                    <h:outputText value="#{user.score.username}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn3}</f:facet>
+                    <h:outputText value="#{user.score.points}" />
+                </h:column>
+            </h:dataTable> 
+
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:dataTable value="#{navigationController.perguntas}" var="question" border="1">   
                 <h:column>
                     <f:facet name="header">#{bundle.FinalScoresColumn1}</f:facet>
-                    <h:outputText value="1, 2, 3, 4, 5"/>
-                    <!--Buscar a Array dos titulos de perguntas
-                    <h:outputText value="#{myBean.questions}"/>
-                    -->
+                    <h:outputText value="#{question.id}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">#{bundle.FinalScoresColumn2}</f:facet>
-                    <h:outputText value="5, 4, 3, 2, 1"/>
-                    <!--Buscar a Array do numero de respostas corretas
-                    <h:outputText value="#{myBean.questionsCorrect}"/>
-                    -->
+                    <h:outputText value="#{question.countCorrectAnswers}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">#{bundle.FinalScoresColumn3}</f:facet>
-                    <h:outputText value="0, 1, 2, 3, 4"/>
-                    <!--Buscar a Array do numero de respostas erradas
-                    <h:outputText value="#{myBean.questionsWrong}"/>
-                    -->
+                    <h:outputText value="#{question.countWrongAnswers}"/>
                 </h:column>
             </h:dataTable> 
+
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
             <h:commandButton action="Alterar Isto" value="#{bundle.ButtonPlayAgain}"  />
         </h:form>
     </h:body>

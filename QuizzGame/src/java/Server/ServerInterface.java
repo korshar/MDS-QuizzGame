@@ -34,8 +34,15 @@ public interface ServerInterface {
     public boolean getEstadoJogo();
     
     public Pergunta getNextPergunta();
+    
     public Pergunta getPergunta(int id);
     
+    public List<Utilizador> getUtilizadores();
+
+    public void setUtilizadores(List<Utilizador> utilizadores);
     
+    public List<Pergunta> getPerguntas();
+
+    public void setPerguntas(List<Pergunta> perguntas);
     
 }
