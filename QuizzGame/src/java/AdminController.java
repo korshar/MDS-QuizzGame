@@ -23,12 +23,8 @@ public class AdminController implements Serializable{
     ServerInterface server;
     String selected;
     public void ativaJogo(){
-        server.clearList();
-        server.setEstadoJogo(true);
-    }
-    
-    public void resetServer(){
         server.hardReset();
+        server.setEstadoJogo(true);
     }
     
     public String getSelected() {
