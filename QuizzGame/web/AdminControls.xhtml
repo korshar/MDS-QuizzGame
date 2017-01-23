@@ -19,7 +19,8 @@
             <!-- Por no value o sitio onde se vai guardar a pergunta seleccionada.(iniciar a variavel com um value ex:"1")
              <h:selectOneRadio value="#{x.perguntaSeleccionada}" layout="pageDirection">
             -->
-            <h:commandButton action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"></h:commandButton>
+            <h:commandButton action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"/>
+            <h:commandButton action="#{adminController.fechaJogo()}" value="#{bundle.ButtonCloseRegistrations}"/>
             
             <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:outputText value="&lt;br/&gt;" escape="false" />

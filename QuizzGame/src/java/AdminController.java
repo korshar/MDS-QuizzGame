@@ -27,6 +27,10 @@ public class AdminController implements Serializable{
         server.setEstadoJogo(true);
     }
     
+    public void fechaJogo(){
+        server.setEstadoJogo(false);
+    }
+    
     public String getSelected() {
         return selected;
     }
