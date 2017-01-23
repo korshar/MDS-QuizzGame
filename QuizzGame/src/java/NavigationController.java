@@ -58,19 +58,19 @@ public class NavigationController implements Serializable {
         if (value.equalsIgnoreCase("adminMDS")) {
             user = new Utilizador("adminMDS");
             FacesContext.getCurrentInstance().getExternalContext().redirect("AdminControls.xhtml");
-        } else{
-            if(server.getEstadoJogo()==true){
-            if (server.aprovUserName(value)) {
-            server.addUser(value);
-            user = server.getUser(value);
-            this.Nperg = 0;
-            per = server.getNextPergunta();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("Aguarda_Inicio_Jogo.xhtml");
+        } else {
+            if (server.getEstadoJogo() == true) {
+                if (server.aprovUserName(value)) {
+                    server.addUser(value);
+                    user = server.getUser(value);
+                    this.Nperg = 0;
+                    per = server.getNextPergunta();
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("Aguarda_Inicio_Jogo.xhtml");
 
                 } else {
                     user = null;
                 }
-        }
+            }
         }
 
     }
@@ -181,6 +181,11 @@ public class NavigationController implements Serializable {
         if (server.getEstadoJogo() == false) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
         }
+
+    }
+
+    public void playAgain() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 
     }
 }
