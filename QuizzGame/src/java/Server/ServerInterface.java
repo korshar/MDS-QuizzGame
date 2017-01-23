@@ -45,4 +45,6 @@ public interface ServerInterface {
 
     public void setPerguntas(List<Pergunta> perguntas);
     
+    public void hardReset();
+    
 }

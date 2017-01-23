@@ -138,5 +138,10 @@ public class Pergunta {
         this.blocked = blocked;
     }
     
+    public void hardReset(){
+        countWrongAnswers = 0;
+        countCorrectAnswers = 0;
+        blocked = true;
+    }
     
 }

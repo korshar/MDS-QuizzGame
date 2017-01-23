@@ -27,6 +27,10 @@ public class AdminController implements Serializable{
         server.setEstadoJogo(true);
     }
     
+    public void resetServer(){
+        server.hardReset();
+    }
+    
     public String getSelected() {
         return selected;
     }

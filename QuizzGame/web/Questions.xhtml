@@ -16,7 +16,7 @@
         <h1>Pergunta #{navigationController.per.id}</h1>
         <h2><h:outputFormat id="Pergunta" value="#{navigationController.pergunta}"/></h2>
         <h:form>
-            <h:selectOneRadio value="#{navigationController.selected}" layout="pageDirection">
+            <h:selectOneRadio value="#{navigationController.selected}" layout="pageDirection" required="true">
                 <f:selectItem itemValue="1" itemLabel="#{navigationController.opcao1}" />
                 <f:selectItem itemValue="2" itemLabel="#{navigationController.opcao2}" />
                 <f:selectItem itemValue="3" itemLabel="#{navigationController.opcao3}" />

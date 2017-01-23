@@ -164,4 +164,14 @@ public class Server implements ServerInterface {
             utilizadores.get(i).getScore().setClassification(Integer.toString(i + 1));
         }
     }
+    
+    @Override
+    public void hardReset(){
+        utilizadores.clear();
+        jogo = false;
+        for(Pergunta u :perguntas){
+            u.hardReset();
+        }
+    }
+    
 }
