@@ -58,17 +58,15 @@ public class NavigationController implements Serializable {
         if (value.equalsIgnoreCase("adminMDS")) {
             user = new Utilizador("adminMDS");
             FacesContext.getCurrentInstance().getExternalContext().redirect("AdminControls.xhtml");
-        } else {
-            if (server.aprovUserName(value)) {
-                server.addUser(value);
-                user = server.getUser(value);
-                this.Nperg = 0;
-                per = server.getNextPergunta();
-                FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
+        } else if (server.aprovUserName(value)) {
+            server.addUser(value);
+            user = server.getUser(value);
+            this.Nperg = 0;
+            per = server.getNextPergunta();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
 
-            } else {
-                user = null;
-            }
+        } else {
+            user = null;
         }
 
     }
@@ -112,13 +110,18 @@ public class NavigationController implements Serializable {
 
     public void selecionaPergunta() throws IOException {
         if (per.isAnswer(Integer.parseInt(selected))) {
-            server.getPergunta(per.getId()-1).incCorrectAnswers();
+            server.getPergunta(per.getId() - 1).incCorrectAnswers();
             server.getUser(user.getUsername()).getScore().addPoints(1);
         } else {
-            server.getPergunta(per.getId()-1).incWrongAnswers();
+            server.getPergunta(per.getId() - 1).incWrongAnswers();
         }
-        per = server.getPergunta(++Nperg);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
+        if (Nperg + 1 < server.getPerguntas().size()) {
+            per = server.getPergunta(++Nperg);
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
+        } else {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("FinalScores.xhtml");
+        }
     }
 
     public List<Utilizador> getUsers() {
@@ -145,22 +148,28 @@ public class NavigationController implements Serializable {
         this.per = per;
     }
 
-    public Boolean isUsernameValid(String username){
-    
+    public Boolean isUsernameValid(String username) {
+
         return username.equalsIgnoreCase("adminMDS") || server.aprovUserName(username);
     }
-    
-    public void nextquestion() throws IOException{
+
+    public void nextquestion() throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
     }
-    
+
     public void refreshTable() throws IOException {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
     }
-    
+
     public void refreshBetween() throws IOException {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
+
+        if (!per.isBlocked()) {
+            selected = "";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
+        }
+
     }
 }

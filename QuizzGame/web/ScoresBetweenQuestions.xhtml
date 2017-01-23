@@ -25,8 +25,8 @@
                     <h:outputText value="#{user.score.points}" />
                 </h:column>
             </h:dataTable> 
-            <p:poll interval="3" listener="#{navigationController.refreshBetween}" update="scoreBetween" /> 
-            <!--<h:commandButton value="#{bundle.ButtonConfirm}" action="#{navigationController.nextquestion()}"> </h:commandButton>-->
+         <p:poll interval="3" listener="#{navigationController.refreshBetween}" update="scoreBetween" />
+          
         </h:form>
     </h:body>
 </html>
