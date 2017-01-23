@@ -19,23 +19,36 @@
             <!-- Por no value o sitio onde se vai guardar a pergunta seleccionada.(iniciar a variavel com um value ex:"1")
              <h:selectOneRadio value="#{x.perguntaSeleccionada}" layout="pageDirection">
             -->
-            <h:commandButton action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"/>
-            <h:commandButton action="#{adminController.fechaJogo()}" value="#{bundle.ButtonCloseRegistrations}"/>
+       
+            <h:commandButton class="btn btn-success btn-md" action="#{adminController.ativaJogo()}" value="#{bundle.ButtonOpenRegistrations}"/>
+            <span></span>
+            <span></span>
+            <h:commandButton class="btn btn-warning btn-md"  action="#{adminController.fechaJogo()}" value="#{bundle.ButtonCloseRegistrations}"/>
             
             <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:outputText value="&lt;br/&gt;" escape="false" />
             
-            <h:selectOneRadio  value="#{adminController.selected}" layout="pageDirection" border="1" >
+            <h:selectOneRadio class="btn-group" value="#{adminController.selected}" layout="pageDirection" border="1" >
+                <div class="radio">
                 <f:selectItem itemValue="1" itemLabel="#{bundle.RadioQuestion1}" />
+                </div>
+                <div class="radio">
                 <f:selectItem itemValue="2" itemLabel="#{bundle.RadioQuestion2}" />
+                </div>
+                <div class="radio">
                 <f:selectItem itemValue="3" itemLabel="#{bundle.RadioQuestion3}" />
+                </div>
+                <div class="radio">
                 <f:selectItem itemValue="4" itemLabel="#{bundle.RadioQuestion4}" />
-                <f:selectItem itemValue="5" itemLabel="#{bundle.RadioQuestion5}" />	
+                </div>
+                <div class="radio">
+                <f:selectItem itemValue="5" itemLabel="#{bundle.RadioQuestion5}" />
+                </div>
             </h:selectOneRadio>
             
             <h:outputText value="&lt;br/&gt;" escape="false" />
             
-            <h:commandButton action="#{adminController.ativaPergunta()}" value="#{bundle.ButtonSave}"  />
+            <h:commandButton class="btn-info btn-lg" action="#{adminController.ativaPergunta()}" value="#{bundle.ButtonSave}"  />
         </h:form>
         </div>
     </h:body>
