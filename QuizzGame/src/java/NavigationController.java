@@ -154,4 +154,12 @@ public class NavigationController implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
     }
     
+    public void refreshTable() throws IOException {
+        users = server.getUtilizadores();
+        perguntas = server.getPerguntas();
+    }
+    public void refreshBetween() throws IOException {
+        users = server.getUtilizadores();
+        perguntas = server.getPerguntas();
+    }
 }
