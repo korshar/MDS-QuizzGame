@@ -17,7 +17,8 @@
      <div class="container-fluid">
         <h:form id="formTableFinal">
             <h1>Final Score</h1>
-            <h:dataTable id="scoreBoard" value="#{navigationController.users}" var="user" border="1">   
+            <div  class="table-responsive">
+            <h:dataTable class="table" id="scoreBoard" value="#{navigationController.users}" var="user" border="1">   
                 <h:column>
                     <f:facet name="header">#{bundle.ScoresBetweenQuestionsColumn1}</f:facet>
                     <h:outputText value="#{user.score.classification}" />
@@ -31,10 +32,12 @@
                     <h:outputText value="#{user.score.points}" />
                 </h:column>
             </h:dataTable> 
+            </div>
 
             <h:outputText value="&lt;br/&gt;" escape="false" />
 
-            <h:dataTable id="countAnswer" value="#{navigationController.perguntas}" var="question" border="1">   
+              <div  class="table-responsive">
+            <h:dataTable class="table" id="countAnswer" value="#{navigationController.perguntas}" var="question" border="1">   
                 <h:column>
                     <f:facet name="header">#{bundle.FinalScoresColumn1}</f:facet>
                     <h:outputText value="#{question.id}"/>
@@ -48,10 +51,10 @@
                     <h:outputText value="#{question.countWrongAnswers}"/>
                 </h:column>
             </h:dataTable> 
-
+              </div>
             <h:outputText value="&lt;br/&gt;" escape="false" />
 
-            <h:commandButton action="#{navigationController.playAgain()}" value="#{bundle.ButtonPlayAgain}"  />
+            <h:commandButton class="btn btn-success btn-lg" action="#{navigationController.playAgain()}" value="#{bundle.ButtonPlayAgain}"  />
 
             <p:poll interval="3" listener="#{navigationController.refreshTable}" update="formTableFinal" /> 
         </h:form>

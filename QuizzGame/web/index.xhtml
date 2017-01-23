@@ -20,8 +20,8 @@
             <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:outputText value="&lt;br/&gt;" escape="false" />
             <h:inputText id="inputUsername" binding="#{username}"/>
-            <p:watermark for="inputUsername" value="#{bundle.InputTextUsername}" />  
-            <h:commandButton class="btn btn-primary btn-sm" rendererType="all" value="#{bundle.ButtonConfirm}" action="#{navigationController.setUsername(username.value)}"/>
+            <p:watermark for="inputUsername" value="#{bundle.InputTextUsername}" />  <span></span>
+            <h:commandButton class="btn btn-primary btn-sm" rendererType="all" value="#{bundle.ButtonJoin}" action="#{navigationController.setUsername(username.value)}"/>
             <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
         </h:form>
         </div>

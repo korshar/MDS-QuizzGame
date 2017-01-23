@@ -16,16 +16,24 @@
         <h1>Pergunta #{navigationController.per.id}</h1>
         <h2><h:outputFormat id="Pergunta" value="#{navigationController.pergunta}"/></h2>
         <h:form>
-            <h:selectOneRadio value="#{navigationController.selected}" layout="pageDirection" required="true">
+            <h:selectOneRadio class="form-group" value="#{navigationController.selected}" layout="pageDirection" required="true">
+                <div class="radio">
                 <f:selectItem itemValue="1" itemLabel="#{navigationController.opcao1}" />
+                </div>
+                <div class="radio">
                 <f:selectItem itemValue="2" itemLabel="#{navigationController.opcao2}" />
+                </div>
+                <div class="radio">
                 <f:selectItem itemValue="3" itemLabel="#{navigationController.opcao3}" />
-                <f:selectItem itemValue="4" itemLabel="#{navigationController.opcao4}" />	
+                </div>
+                <div class="radio">
+                <f:selectItem itemValue="4" itemLabel="#{navigationController.opcao4}" />
+                </div>
             </h:selectOneRadio>
             
             <h:outputText value="&lt;br/&gt;" escape="false" />
             
-            <h:commandButton value="#{bundle.ButtonConfirm}" action="#{navigationController.selecionaPergunta()}"/>
+            <h:commandButton class="btn btn-danger btn-lg" value="#{bundle.ButtonConfirm}" action="#{navigationController.selecionaPergunta()}"/>
         </h:form>
          </div>
     </h:body>
