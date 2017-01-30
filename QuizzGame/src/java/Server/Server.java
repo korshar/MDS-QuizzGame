@@ -27,6 +27,7 @@ public class Server implements ServerInterface {
     static List<Utilizador> utilizadores;
     static List<Pergunta> perguntas;
     boolean jogo;
+    int currentQuestions;
     
     
     @PostConstruct
@@ -39,7 +40,7 @@ public class Server implements ServerInterface {
         perguntas.add(new Pergunta("Qual a capital do Tuvalu", 4, "Funafuti", "Funafuti", "Alapi", "Marmelândia", "Bagan"));
         perguntas.add(new Pergunta("De onde provém a famosa água JANA?", 5, "Croacia", "Malta", "Croacia", "Suécia", "Dinamarca"));
         jogo = false;
-
+        currentQuestions=0;
         utilizadores.add(new Utilizador("Jonathan Magalhães"));
         utilizadores.get(utilizadores.size() - 1).getScore().setPoints("1");
         utilizadores.add(new Utilizador("André Rodrigues"));
@@ -172,6 +173,19 @@ public class Server implements ServerInterface {
         for(Pergunta u :perguntas){
             u.hardReset();
         }
+        currentQuestions=0;
     }
+    
+    //incrementa o numero da pergunta
+    @Override
+    public void incPergunta(int i){
+        currentQuestions = i;
+    }
+
+    @Override
+    public int getCurrentQuestions() {
+        return currentQuestions;
+    }
+    
     
 }

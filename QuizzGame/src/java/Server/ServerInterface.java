@@ -47,4 +47,8 @@ public interface ServerInterface {
     
     public void hardReset();
     
+    public void incPergunta(int i);
+    
+    public int getCurrentQuestions();
+    
 }

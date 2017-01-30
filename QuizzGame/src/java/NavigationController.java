@@ -65,7 +65,7 @@ public class NavigationController implements Serializable {
                 if (server.aprovUserName(value)) {
                     server.addUser(value);
                     user = server.getUser(value);
-                    this.Nperg = 0;
+                    this.Nperg = server.getCurrentQuestions();
                     per = server.getNextPergunta();
                     FacesContext.getCurrentInstance().getExternalContext().redirect("Aguarda_Inicio_Jogo.xhtml");
 
@@ -199,5 +199,15 @@ public class NavigationController implements Serializable {
     public void playAgain() throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 
+    }
+    
+    public void refreshQuestions() throws IOException{
+          /* if(Nperg != server.getCurrentQuestions()){
+               Nperg = server.getCurrentQuestions();
+               selected="";  
+               this.per = server.getPergunta(Nperg);
+               
+           } */
+          this.Opcao1 ="Trinca Bolotas";
     }
 }

@@ -32,48 +32,58 @@ public class AdminController implements Serializable{
     public void ativaPergunta(){
         switch(Integer.parseInt(selected)){
             case 1:{
+             
                 for(int i = 0; i < server.getPerguntas().size(); i++){
                     if(i == 0)
                         server.getPergunta(i).setBlocked(false);
                     else
                         server.getPergunta(i).setBlocked(true);
                 }
+                  server.incPergunta(0);
                 break;
             }
             case 2:{
+                
                 for(int i = 0; i < server.getPerguntas().size(); i++){
                     if(i == 1)
                         server.getPergunta(i).setBlocked(false);
                     else
                         server.getPergunta(i).setBlocked(true);
                 }
+                server.incPergunta(1);
                 break;
             }
             case 3:{
+                
                 for(int i = 0; i < server.getPerguntas().size(); i++){
                     if(i == 2)
                         server.getPergunta(i).setBlocked(false);
                     else
                         server.getPergunta(i).setBlocked(true);
                 }
+                server.incPergunta(2);
                 break;
             }
             case 4:{
+               
                 for(int i = 0; i < server.getPerguntas().size(); i++){
                     if(i == 3)
                         server.getPergunta(i).setBlocked(false);
                     else
                         server.getPergunta(i).setBlocked(true);
                 }
+                 server.incPergunta(3);
                 break;
             }
             case 5:{
+              
                 for(int i = 0; i < server.getPerguntas().size(); i++){
                     if(i == 4)
                         server.getPergunta(i).setBlocked(false);
                     else
                         server.getPergunta(i).setBlocked(true);
                 }
+                server.incPergunta(4);
                 break;
             }
         }
