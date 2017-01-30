@@ -22,8 +22,11 @@
             <h:inputText id="inputUsername" binding="#{username}"/>
             <p:watermark for="inputUsername" value="#{bundle.InputTextUsername}" />  <span></span>
             <h:commandButton class="btn btn-primary btn-sm" rendererType="all" value="#{bundle.ButtonJoin}" action="#{navigationController.setUsername(username.value)}"/>
-            <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
+           
         </h:form>
+        <h:panelGroup id="text">
+             <h:outputFormat value="#{navigationController.username}" rendered="#{!navigationController.isUsernameValid(username)}" />
+        </h:panelGroup>
         </div>
     </h:body>
 </html> 

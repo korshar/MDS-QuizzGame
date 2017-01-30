@@ -72,7 +72,8 @@ public class NavigationController implements Serializable {
                 } else {
                     user = null;
                 }
-            }
+            }else
+                user=null;
         }
 
     }
@@ -126,12 +127,19 @@ public class NavigationController implements Serializable {
     }
 
     public void selecionaPergunta() throws IOException {
+        try{
+            
+        
         if (per.isAnswer(Integer.parseInt(selected))) {
             server.getPergunta(per.getId() - 1).incCorrectAnswers();
             server.getUser(user.getUsername()).getScore().addPoints(1);
         } else {
             server.getPergunta(per.getId() - 1).incWrongAnswers();
         }
+        }catch(Exception e){
+             server.getPergunta(per.getId() - 1).incWrongAnswers();
+        }
+    
         Nperg++;
         if (Nperg < server.getPerguntas().size()) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
@@ -202,12 +210,13 @@ public class NavigationController implements Serializable {
     }
     
     public void refreshQuestions() throws IOException{
-          /* if(Nperg != server.getCurrentQuestions()){
+          if(Nperg != server.getCurrentQuestions()){
+               server.getPergunta(per.getId() - 1).incWrongAnswers();
                Nperg = server.getCurrentQuestions();
                selected="";  
                this.per = server.getPergunta(Nperg);
-               
-           } */
-          this.Opcao1 ="Trinca Bolotas";
+               FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
+           } 
+        
     }
 }

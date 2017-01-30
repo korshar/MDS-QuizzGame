@@ -18,7 +18,7 @@
         <h1>Pergunta #{navigationController.per.id}</h1>
         <h2><h:outputFormat id="Pergunta" value="#{navigationController.pergunta}"/></h2>
     
-            <h:selectOneRadio class="form-group" value="#{navigationController.selected}" layout="pageDirection" required="true">
+            <h:selectOneRadio class="form-group" value="#{navigationController.selected}" layout="pageDirection" required="false">
                 <div class="radio">
                 <f:selectItem itemValue="1" itemLabel="#{navigationController.opcao1}" />
                 </div>
@@ -39,7 +39,7 @@
               
             <h:commandButton class="btn btn-danger btn-lg" value="#{bundle.ButtonConfirm}" action="#{navigationController.selecionaPergunta()}"/>
             
-           <p:poll interval="3" listener="#{navigationController.refreshQuestions()}" update="questions" />
+            <p:poll interval="2" listener="#{navigationController.refreshQuestions()}" update="questions" async="true"> </p:poll>
         </h:form>
              
          </div>
