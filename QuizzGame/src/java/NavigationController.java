@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -76,7 +78,18 @@ public class NavigationController implements Serializable {
     }
 
     public String getPergunta() {
-
+        try {
+            if (Nperg == server.getPerguntas().size()) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("FinalScores.xhtml");
+            }
+            if (Nperg < server.getPerguntas().size() && server.getPergunta(Nperg).isBlocked()) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
+            } else {
+                per = server.getPergunta(Nperg);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(NavigationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return this.Pergunta = per.getPergunta();
     }
 
@@ -119,9 +132,8 @@ public class NavigationController implements Serializable {
         } else {
             server.getPergunta(per.getId() - 1).incWrongAnswers();
         }
-        if (Nperg + 1 < server.getPerguntas().size()) {
-            per = server.getPergunta(++Nperg);
-
+        Nperg++;
+        if (Nperg < server.getPerguntas().size()) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("ScoresBetweenQuestions.xhtml");
         } else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("FinalScores.xhtml");
@@ -170,7 +182,7 @@ public class NavigationController implements Serializable {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
 
-        if (!per.isBlocked()) {
+        if (!server.getPergunta(Nperg).isBlocked()) {
             selected = "";
             FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
         }

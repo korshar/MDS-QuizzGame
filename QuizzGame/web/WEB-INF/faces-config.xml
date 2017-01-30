@@ -8,6 +8,9 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <lifecycle>
+            <phase-listener id="nocache">CacheControlPhaseListener</phase-listener>
+        </lifecycle>
     </application>
 
 
