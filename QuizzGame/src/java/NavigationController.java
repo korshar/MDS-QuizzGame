@@ -182,7 +182,7 @@ public class NavigationController implements Serializable {
         users = server.getUtilizadores();
         perguntas = server.getPerguntas();
 
-        if (!per.isBlocked()) {
+        if (!server.getPergunta(Nperg).isBlocked()) {
             selected = "";
             FacesContext.getCurrentInstance().getExternalContext().redirect("Questions.xhtml");
         }

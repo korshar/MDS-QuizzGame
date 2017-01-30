@@ -5,16 +5,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author jonat
- */
 @SessionScoped
 @Named
 public class AdminController implements Serializable{
@@ -42,23 +32,48 @@ public class AdminController implements Serializable{
     public void ativaPergunta(){
         switch(Integer.parseInt(selected)){
             case 1:{
-                server.getPergunta(0).setBlocked(false);
+                for(int i = 0; i < server.getPerguntas().size(); i++){
+                    if(i == 0)
+                        server.getPergunta(i).setBlocked(false);
+                    else
+                        server.getPergunta(i).setBlocked(true);
+                }
                 break;
             }
             case 2:{
-                server.getPergunta(1).setBlocked(false);
+                for(int i = 0; i < server.getPerguntas().size(); i++){
+                    if(i == 1)
+                        server.getPergunta(i).setBlocked(false);
+                    else
+                        server.getPergunta(i).setBlocked(true);
+                }
                 break;
             }
             case 3:{
-                server.getPergunta(2).setBlocked(false);
+                for(int i = 0; i < server.getPerguntas().size(); i++){
+                    if(i == 2)
+                        server.getPergunta(i).setBlocked(false);
+                    else
+                        server.getPergunta(i).setBlocked(true);
+                }
                 break;
             }
             case 4:{
-                server.getPergunta(3).setBlocked(false);
+                for(int i = 0; i < server.getPerguntas().size(); i++){
+                    if(i == 3)
+                        server.getPergunta(i).setBlocked(false);
+                    else
+                        server.getPergunta(i).setBlocked(true);
+                }
                 break;
             }
             case 5:{
-             server.getPergunta(4).setBlocked(false);
+                for(int i = 0; i < server.getPerguntas().size(); i++){
+                    if(i == 4)
+                        server.getPergunta(i).setBlocked(false);
+                    else
+                        server.getPergunta(i).setBlocked(true);
+                }
                 break;
             }
         }
